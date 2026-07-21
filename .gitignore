@@ -2,6 +2,7 @@
 idea/
 target/
 test/
+data/
 
 *.iml
 *.log
