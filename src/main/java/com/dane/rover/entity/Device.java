@@ -1,8 +1,8 @@
 package com.dane.rover.entity;
 
 import jakarta.persistence.*;
-
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Device {
@@ -15,15 +15,11 @@ public class Device {
     String ollama_endpoint;
 
     @OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<OllamaModel> models;
+    Set<OllamaModel> models;
     boolean isAvailable;
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -42,12 +38,16 @@ public class Device {
         this.ollama_endpoint = ollama_endpoint;
     }
 
-    public List<OllamaModel> getModels() {
+    public Set<OllamaModel> getModels() {
         return models;
     }
 
-    public void setModels(List<OllamaModel> models) {
-        this.models = models;
+    public void addModel(OllamaModel model) {
+        this.models.add(model);
+    }
+
+    public void deleteModel(OllamaModel model) {
+        this.models.remove(model);
     }
 
     public boolean isAvailable() {

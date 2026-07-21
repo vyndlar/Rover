@@ -3,9 +3,7 @@ package com.dane.rover.service;
 import com.dane.rover.entity.Device;
 import com.dane.rover.repository.DeviceRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DeviceService {

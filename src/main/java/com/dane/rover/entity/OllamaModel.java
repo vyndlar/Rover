@@ -26,9 +26,13 @@ public class OllamaModel {
     )
     @Enumerated(EnumType.STRING)
     @Column(name = "capability")
-    private Set<ModelCapability> capability = new HashSet<>();
+    private Set<ModelCapability> capabilities = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "device_id")
     private Device device;
+
+    public Set<ModelCapability> getCapabilities() {
+        return capabilities;
+    }
 }
