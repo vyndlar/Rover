@@ -1,0 +1,7 @@
+.idea/
+target/
+idea/
+*.iml
+*.log
+application-local.properties
+application-local.yml
