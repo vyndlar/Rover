@@ -7,5 +7,4 @@ test/
 *.log
 HELP.md
 
-application-local.properties
-application-local.yml
+src/main/resources/application-local.properties
