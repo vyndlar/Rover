@@ -1,7 +1,11 @@
 .idea/
-target/
 idea/
+target/
+test/
+
 *.iml
 *.log
+HELP.md
+
 application-local.properties
 application-local.yml
