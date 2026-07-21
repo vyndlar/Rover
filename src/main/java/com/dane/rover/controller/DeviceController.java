@@ -1,21 +1,47 @@
 package com.dane.rover.controller;
 
 import com.dane.rover.entity.Device;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.dane.rover.service.DeviceService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/devices")
 public class DeviceController {
 
-    @GetMapping("/devices")
-    public List<Device> devices() {
-        Device device = new Device();
-        List<Device> devices = new ArrayList<>();
-        devices.add(device);
+    private final DeviceService deviceService;
 
-        return devices;
+    public DeviceController(DeviceService deviceService) {
+        this.deviceService = deviceService;
     }
+
+    @GetMapping("/list")
+    public List<Device> devices() {
+        return deviceService.listDevices();
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Device> createDevice(@RequestBody Device device) {
+        Device saved = deviceService.createDevice(device);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+    }
+
+    @DeleteMapping("{id}/delete")
+    public String deleteDevice(@PathVariable long id) {
+
+        try {
+            Device device = deviceService.getDeviceById(id);
+            deviceService.deleteDevice(device);
+            return "Success";
+        } catch (RuntimeException e) {
+            return e.toString();
+        }
+
+    }
+
 }
