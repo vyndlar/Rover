@@ -16,6 +16,7 @@ public class Device {
 
     @OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
     Set<OllamaModel> models;
+
     boolean isAvailable;
 
     public long getId() {
